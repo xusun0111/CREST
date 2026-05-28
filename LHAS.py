@@ -26,7 +26,6 @@ class DimensionNN_V2(nn.Module):
     def dimensional_loss(self):
         return self.out.mean(dim=0).pow(2).mean()
 
-
 class MLP_encoder(nn.Module):
     def __init__(self, n_in, n_h, activator):
         super(MLP_encoder, self).__init__()
