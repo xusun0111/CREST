@@ -6,8 +6,8 @@ import torch
 import torch_geometric
 import argparse
 import sys
-from LSAS import DimensionNN_V2, GraphTransformer_encoder, MLP_encoder, LSAS
-from LSAS import DimensionNN_V2, LSAS
+from CREST import DimensionNN_V2, GraphTransformer_encoder, MLP_encoder, CREST
+from CREST import DimensionNN_V2, CREST
 from Utils import dimensional_sample_random, DAD_edge_index, freeze_test, get_embedding
 
 torch.cuda.empty_cache()
@@ -44,7 +44,7 @@ def run(args):
     dnn = DimensionNN_V2(sample_size, feature_signal_dim * 2, feature_signal_dim, activator)
     mlp = MLP_encoder(feature_signal_dim, hid_units, activator)
     trans = GraphTransformer_encoder(feature_signal_dim, hid_units, activator)
-    model = LSAS(D_NN=dnn, MLP=mlp, Trans=trans, S_mtd=dimensional_sample_random, sample_size=sample_size)
+    model = CREST(D_NN=dnn, MLP=mlp, Trans=trans, S_mtd=dimensional_sample_random, sample_size=sample_size)
 
     optimiser = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
 
@@ -82,7 +82,7 @@ def run(args):
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
     # setting arguments
-    parser = argparse.ArgumentParser('LSAS')
+    parser = argparse.ArgumentParser('CREST')
     parser.add_argument('--dataset', type=str, default='Wisconsin',
                         help="""Dataset name: Cora, CiteSeer, PubMed, dblp, Photo, Computers, CS, Physics,
     ogbn-products, ogbn-arxiv, Wiki, ppi, Cornell, Texas, Wisconsin,
