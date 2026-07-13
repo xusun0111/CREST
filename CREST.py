@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch_geometric.nn import TransformerConv
 
-
 class DimensionNN_V2(nn.Module):
     def __init__(self, n_in, n_h, n_out, activator):
         super(DimensionNN_V2, self).__init__()
@@ -48,7 +47,6 @@ class MLP_encoder(nn.Module):
         self.eval()
         return self.encode(x)
 
-
 class GraphTransformer_encoder(nn.Module):
     def __init__(self, n_in, n_h, activator, heads=3, dropout=0.2):
         super(GraphTransformer_encoder, self).__init__()
@@ -70,7 +68,6 @@ class GraphTransformer_encoder(nn.Module):
     def embed(self, x, edge_index):
         self.eval()
         return self.encode(x, edge_index)
-
 
 class LSAS(nn.Module):
     def __init__(self, D_NN, MLP, Trans, S_mtd, sample_size):
