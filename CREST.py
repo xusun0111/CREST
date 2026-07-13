@@ -69,9 +69,9 @@ class GraphTransformer_encoder(nn.Module):
         self.eval()
         return self.encode(x, edge_index)
 
-class LSAS(nn.Module):
+class (nn.Module):
     def __init__(self, D_NN, MLP, Trans, S_mtd, sample_size):
-        super(LSAS, self).__init__()
+        super(CREST, self).__init__()
         self.dnn = D_NN
         self.mlp = MLP
         self.trans = Trans
